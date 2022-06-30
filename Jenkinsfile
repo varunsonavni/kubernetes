@@ -17,9 +17,9 @@ stages{
     }
 
     stage('Updating and deploying k8s components') {
-        when {
-            branch 'main'
-        }
+//         when {
+//             branch 'main'
+//         }
         steps {
             sh "kubectl apply -f deployment.yaml"
             
