@@ -10,6 +10,10 @@ stages{
         }
         steps {
             echo "Building phase started"
+            nodejs('NodeJS-16.0.0') {
+               
+               sh 'pm2 --version'
+            }
             sh "aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 481195286011.dkr.ecr.us-east-1.amazonaws.com"
             sh "docker build -t 481195286011.dkr.ecr.us-east-1.amazonaws.com/python:latest ." 
             sh "docker push 481195286011.dkr.ecr.us-east-1.amazonaws.com/python:latest"
