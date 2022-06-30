@@ -5,9 +5,9 @@ agent any
 stages{
 
     stage('Docker Build and Push to dev ecr') {
-//         when {
-//             branch 'main'
-//         }
+        when {
+            branch "main"
+        }
         steps {
             echo "Building phase started"
             sh "aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 481195286011.dkr.ecr.us-east-1.amazonaws.com"
@@ -17,9 +17,9 @@ stages{
     }
 
     stage('Updating and deploying k8s components') {
-//         when {
-//             branch 'main'
-//         }
+        when {
+            branch "main"
+        }
         steps {
             sh "kubectl apply -f deployment.yaml"
             
