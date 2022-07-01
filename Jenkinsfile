@@ -9,7 +9,7 @@ stages{
             branch "main"
         }
         steps {
-            echo "Building phase started"
+            echo "Building phase started."
             nodejs('NodeJS-16.0.0') {
                
                sh 'pm2 --version'
@@ -21,14 +21,14 @@ stages{
         }
     }
 
-    stage('Updating and deploying k8s components') {
-        when {
-            branch "main"
-        }
-        steps {
-            sh "kubectl apply -f deployment.yaml"
+//     stage('Updating and deploying k8s components') {
+//         when {
+//             branch "main"
+//         }
+//         steps {
+//             sh "kubectl apply -f deployment.yaml"
             
-        }
-    }
+//         }
+//     }
  }
 }
