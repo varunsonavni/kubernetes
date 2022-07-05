@@ -22,16 +22,16 @@ stages{
         }
     }
 
-//     stage('Updating and deploying k8s components to main') {
-//         when {
-//             branch "main"
-//         }
-//         steps {
-//             sh "kubectl apply -f deployment.yaml"
-//             sh "kubectl rollout restart deployment -n stage epw-notification-deployment"
+    stage('Updating and deploying k8s components to main') {
+        when {
+            branch "main"
+        }
+        steps {
+            sh "kubectl apply -f deployment.yaml -n prod"
+            sh "kubectl rollout restart deployment -n prod python-app-frontend"
             
-//         }
-//     }
+        }
+    }
 
     stage('Docker Build and Push to stage ecr') {
         when {

@@ -1,27 +1,36 @@
-apiVersion: v1
-kind: Pod
+apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+kind: Deployment
 metadata:
-  name: nginx
-  labels:
-    app.kubernetes.io/name: proxy
+  name: python-app-frontend
 spec:
-  containers:
-  - name: nginx
-    image: nginx
-    ports:
-      - containerPort: 80
-        name: http-web-svc
-       #gjsjgf 
+  selector:
+    matchLabels:
+      app: nginx
+  replicas: 3 # tells deployment to run 1 pods matching the template
+  template: # create pods using pod definition in this template
+    metadata:
+      labels:
+        app: python-app-frontend
+    spec:
+      containers:
+      - name: python-app-frontend
+        image: 481195286011.dkr.ecr.us-east-1.amazonaws.com/sample-python-frontend:prod
+        ports:
+        - containerPort: 3000
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: nginx-service
-spec:
-  selector:
-    app.kubernetes.io/name: proxy
+  name: python-app-frontend-service
+  labels:
+    app: python-app-frontend
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-type: "nlb"
   ports:
-  - name: name-of-service-port
-    protocol: TCP
+  - name: http
     port: 80
-    targetPort: http-web-svc
+    protocol: TCP
+    targetPort: 3000
+  selector:
+    app: python-app-frontend
+  type: LoadBalancer
