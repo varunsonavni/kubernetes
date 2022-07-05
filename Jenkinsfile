@@ -56,7 +56,7 @@ stages{
             branch "stage"
         }
         steps {
-            sh "kubectl apply -f deployment.yaml"
+            sh "kubectl apply -f stage-deployment.yaml -n stage"
             sh "kubectl rollout restart deployment -n stage python-app-frontend"
             
         }
@@ -85,7 +85,7 @@ stages{
             branch "dev"
         }
         steps {
-            sh "kubectl apply -f deployment.yaml"
+            sh "kubectl apply -f dev-deployment.yaml -n dev"
             sh "kubectl rollout restart deployment -n dev python-app-frontend"
             
         }
