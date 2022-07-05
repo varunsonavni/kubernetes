@@ -1,3 +1,4 @@
+---
 apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
 kind: Deployment
 metadata:
@@ -26,11 +27,12 @@ metadata:
     app: python-app-frontend
   annotations:
     service.beta.kubernetes.io/aws-load-balancer-type: "nlb"
-  ports:
-  - name: http
-    port: 80
-    protocol: TCP
-    targetPort: 3000
-  selector:
-    app: python-app-frontend
+  spec:
+    ports:
+    - name: http
+      port: 80
+      protocol: TCP
+      targetPort: 3000
+    selector:
+      app: python-app-frontend
   type: LoadBalancer
