@@ -19,20 +19,16 @@ spec:
         ports:
         - containerPort: 3000
 ---
+
 apiVersion: v1
 kind: Service
 metadata:
   name: python-app-frontend-service
-  labels:
-    app: python-app-frontend
-  annotations:
-    service.beta.kubernetes.io/aws-load-balancer-type: "nlb"
-  spec:
-    ports:
-    - name: http
-      port: 80
-      protocol: TCP
-      targetPort: 3000
-    selector:
-      app: python-app-frontend
+spec:
   type: LoadBalancer
+  selector:
+    app: python-app-frontend
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 3000
