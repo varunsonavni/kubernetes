@@ -8,13 +8,13 @@ stages{
         when {
             branch "main"
         }
-        // steps {
-        //     echo "Building phase started."
+        steps {
+            echo "Building phase started."
         //     nodejs('NodeJS-16.0.0') {
                
         //        sh 'pm2 --version'
         //     }
-            echo "Building phase started."
+        
             sh "aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 481195286011.dkr.ecr.us-east-1.amazonaws.com"
             sh "docker build -t 481195286011.dkr.ecr.us-east-1.amazonaws.com/sample-python-frontend:prod ." 
             sh "docker push 481195286011.dkr.ecr.us-east-1.amazonaws.com/sample-python-frontend:prod"
