@@ -17,7 +17,7 @@ spec:
       - name: python-app-frontend
         image: 481195286011.dkr.ecr.us-east-1.amazonaws.com/sample-python-frontend:prod
         ports:
-        - containerPort: 3000
+        - containerPort: 5000
 ---
 
 apiVersion: v1
@@ -31,4 +31,4 @@ spec:
   ports:
     - protocol: TCP
       port: 80
-      targetPort: 3000
+      targetPort: 5000
