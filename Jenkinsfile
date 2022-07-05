@@ -18,6 +18,7 @@ stages{
             sh "aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 481195286011.dkr.ecr.us-east-1.amazonaws.com"
             sh "docker build -t 481195286011.dkr.ecr.us-east-1.amazonaws.com/sample-python-frontend:prod ." 
             sh "docker push 481195286011.dkr.ecr.us-east-1.amazonaws.com/sample-python-frontend:prod"
+            sh "docker rmi 481195286011.dkr.ecr.us-east-1.amazonaws.com/sample-python-frontend:prod"
             
         }
     }
@@ -47,6 +48,7 @@ stages{
             sh "aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 481195286011.dkr.ecr.us-east-1.amazonaws.com"
             sh "docker build -t 481195286011.dkr.ecr.us-east-1.amazonaws.com/sample-python-frontend:stage ." 
             sh "docker push 481195286011.dkr.ecr.us-east-1.amazonaws.com/sample-python-frontend:stage"
+            sh "docker rmi 481195286011.dkr.ecr.us-east-1.amazonaws.com/sample-python-frontend:stage"
             
         }
     }
@@ -76,6 +78,7 @@ stages{
             sh "aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 481195286011.dkr.ecr.us-east-1.amazonaws.com"
             sh "docker build -t 481195286011.dkr.ecr.us-east-1.amazonaws.com/sample-python-frontend:dev ." 
             sh "docker push 481195286011.dkr.ecr.us-east-1.amazonaws.com/sample-python-frontend:dev"
+            sh "docker rmi 481195286011.dkr.ecr.us-east-1.amazonaws.com/sample-python-frontend:dev"
             
         }
     }
