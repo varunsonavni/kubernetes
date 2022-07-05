@@ -51,16 +51,16 @@ stages{
         }
     }
 
-//     stage('Updating and deploying k8s components to stage') {
-//         when {
-//             branch "stage"
-//         }
-//         steps {
-//             sh "kubectl apply -f deployment.yaml"
-//             sh "kubectl rollout restart deployment -n stage epw-notification-deployment"
+    stage('Updating and deploying k8s components to stage') {
+        when {
+            branch "stage"
+        }
+        steps {
+            sh "kubectl apply -f deployment.yaml"
+            sh "kubectl rollout restart deployment -n stage python-app-frontend"
             
-//         }
-//     }
+        }
+    }
 
     stage('Docker Build and Push to dev ecr') {
         when {
@@ -80,15 +80,15 @@ stages{
         }
     }
 
-//     stage('Updating and deploying k8s components to dev') {
-//         when {
-//             branch "dev"
-//         }
-//         steps {
-//             sh "kubectl apply -f deployment.yaml"
-//             sh "kubectl rollout restart deployment -n stage epw-notification-deployment"
+    stage('Updating and deploying k8s components to dev') {
+        when {
+            branch "dev"
+        }
+        steps {
+            sh "kubectl apply -f deployment.yaml"
+            sh "kubectl rollout restart deployment -n dev python-app-frontend"
             
-//         }
-//     }
+        }
+    }
  }
 }
